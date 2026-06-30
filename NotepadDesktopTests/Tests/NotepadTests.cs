@@ -28,4 +28,29 @@ public class NotepadTests : TestBase
         Assert.That(page.GetText(),
             Is.EqualTo("Github Sample"));
     }
+
+    [Test]
+    public void Should_Open_Save_Dialog()
+    {
+        var window = App.GetMainWindow(Automation);
+
+        var fileMenu = window.MenuBar
+            .MenuItem("File");
+
+        fileMenu.Click();
+
+        var saveAs = window.FindFirstDescendant(
+            cf => cf.ByText("Save As..."));
+
+        saveAs.Click();
+
+        Thread.Sleep(1000);
+
+        var saveWindow = Automation
+            .GetDesktop()
+            .FindFirstDescendant(
+                cf => cf.ByName("Save As"));
+
+        Assert.That(saveWindow, Is.Not.Null);
+    }
 }
