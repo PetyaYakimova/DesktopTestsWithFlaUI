@@ -1,6 +1,7 @@
 ﻿using FlaUI.Core.AutomationElements;
-using NUnit.Framework;
 using NotepadTests.Base;
+using NotepadTests.Pages;
+using NUnit.Framework;
 
 namespace NotepadTests.Tests;
 
@@ -20,14 +21,11 @@ public class NotepadTests : TestBase
     {
         var window = App.GetMainWindow(Automation);
 
-        var editor = window.FindFirstDescendant(
-            cf => cf.ByControlType(
-                FlaUI.Core.Definitions.ControlType.Document))
-            .AsTextBox();
+        var page = new NotepadPage(window, Automation);
 
-        editor.Enter("Hello FlaUI");
+        page.EnterText("Github Sample");
 
-        Assert.That(editor.Text,
-            Is.EqualTo("Hello FlaUI"));
+        Assert.That(page.GetText(),
+            Is.EqualTo("Github Sample"));
     }
 }
