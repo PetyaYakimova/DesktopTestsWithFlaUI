@@ -44,7 +44,14 @@ public class NotepadTests : TestBase
 
         saveAs.Click();
 
-        Thread.Sleep(1000);
+        WaitHelper.WaitUntil(() =>
+        {
+            var saveWindow = Automation
+                .GetDesktop()
+                .FindFirstDescendant(
+                    cf => cf.ByName("Save As"));
+            return saveWindow != null;
+        });
 
         var saveWindow = Automation
             .GetDesktop()
