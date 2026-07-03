@@ -34,10 +34,9 @@ public class NotepadTests : TestBase
     {
         var window = App.GetMainWindow(Automation);
 
-        var fileMenu = window.MenuBar
-            .MenuItem("File");
+        var fileButton = window.FindFirstDescendant(cf => cf.ByName("File"));
 
-        fileMenu.Click();
+        fileButton.AsButton().Invoke();
 
         var saveAs = window.FindFirstDescendant(
             cf => cf.ByText("Save As..."));
