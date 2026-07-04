@@ -1,4 +1,5 @@
 ﻿using FlaUI.Core;
+using FlaUI.Core.AutomationElements;
 using FlaUI.UIA3;
 using NUnit.Framework;
 
@@ -19,11 +20,21 @@ public class TestBase
     [TearDown]
     public void TearDown()
     {
-        Automation?.Dispose();
+        var window = App.GetMainWindow(Automation);
 
-        if (App != null && !App.HasExited)
+        App.Close();
+
+        var saveDialog = Automation.GetDesktop()
+            .FindFirstDescendant(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Window));
+
+        if (saveDialog != null)
         {
-            App.Close();
+            var dontSaveButton = saveDialog.FindFirstDescendant(cf =>
+                cf.ByName("Don't Save"));
+
+            dontSaveButton?.AsButton().Invoke();
         }
+
+        Automation.Dispose();
     }
 }
