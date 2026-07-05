@@ -1,4 +1,5 @@
 ﻿using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Tools;
 using NotepadTests.Base;
 using NotepadTests.Pages;
 using NUnit.Framework;
@@ -34,12 +35,14 @@ public class NotepadTests : TestBase
     {
         var window = App.GetMainWindow(Automation);
 
-        var fileButton = window.FindFirstDescendant(cf => cf.ByName("File"));
+        window.FindFirstDescendant(cf => cf.ByName("File"))?.AsButton()?.Invoke();
 
-        fileButton.AsButton().Invoke();
+        Retry.WhileNull(() => Automation.GetDesktop().FindFirstDescendant(cf => cf.ByName("Save As")), TimeSpan.FromSeconds(5));
 
         var saveAs = window.FindFirstDescendant(
             cf => cf.ByText("Save As..."));
+
+        Assert.That(saveAs, Is.Not.Null, "Could not find the 'Save As' menu item.");
 
         saveAs.Click();
 
