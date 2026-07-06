@@ -1,7 +1,6 @@
 ﻿using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.UIA3;
-using NUnit.Framework;
 
 namespace NotepadTests.Base;
 
