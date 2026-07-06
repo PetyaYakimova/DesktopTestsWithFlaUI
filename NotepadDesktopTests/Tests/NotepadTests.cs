@@ -2,7 +2,6 @@
 using FlaUI.Core.Tools;
 using NotepadTests.Base;
 using NotepadTests.Pages;
-using NUnit.Framework;
 
 namespace NotepadTests.Tests;
 
