@@ -19,14 +19,15 @@ public class NotepadTests : TestBase
     [Test]
     public void Should_Type_Text()
     {
+        string text = "Sample Text";
+
         var window = App.GetMainWindow(Automation);
 
         var page = new NotepadPage(window, Automation);
 
-        page.EnterText("Github Sample");
+        page.EnterText(text);
 
-        Assert.That(page.GetText(),
-            Is.EqualTo("Github Sample"));
+        Assert.That(page.GetText(), Is.EqualTo(text));
     }
 
     [Test]
