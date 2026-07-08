@@ -29,4 +29,9 @@ public class NotepadPage
     {
         return Editor.Text;
     }
+
+    public void PressFileMenu()
+    {
+        _window.FindFirstDescendant(cf => cf.ByName("File"))?.AsButton()?.Invoke();
+    }
 }
