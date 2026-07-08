@@ -35,7 +35,8 @@ public class NotepadTests : TestBase
     {
         var window = App.GetMainWindow(Automation);
 
-        window.FindFirstDescendant(cf => cf.ByName("File"))?.AsButton()?.Invoke();
+        var page = new NotepadPage(window, Automation);
+        page.PressFileMenu();
 
         Retry.WhileNull(() => Automation.GetDesktop().FindFirstDescendant(cf => cf.ByName("Save As")), TimeSpan.FromSeconds(5));
 
