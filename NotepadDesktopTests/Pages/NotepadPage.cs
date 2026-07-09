@@ -1,6 +1,8 @@
 ﻿using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Definitions;
+using FlaUI.Core.Tools;
 using FlaUI.UIA3;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace NotepadTests.Pages;
 
@@ -33,5 +35,15 @@ public class NotepadPage
     public void PressFileMenu()
     {
         _window.FindFirstDescendant(cf => cf.ByName("File"))?.AsButton()?.Invoke();
+    }
+
+    public void PressSaveAs()
+    {
+        Retry.WhileNull(() => _automation.GetDesktop().FindFirstDescendant(cf => cf.ByName("Save As")), TimeSpan.FromSeconds(5));
+
+        var saveAs = _window.FindFirstDescendant(
+            cf => cf.ByText("Save As..."));
+
+        saveAs.Click();
     }
 }
