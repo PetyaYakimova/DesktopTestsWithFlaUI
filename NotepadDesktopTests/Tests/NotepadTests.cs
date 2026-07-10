@@ -38,14 +38,7 @@ public class NotepadTests : TestBase
         var page = new NotepadPage(window, Automation);
         page.PressFileMenu();
 
-        Retry.WhileNull(() => Automation.GetDesktop().FindFirstDescendant(cf => cf.ByName("Save As")), TimeSpan.FromSeconds(5));
-
-        var saveAs = window.FindFirstDescendant(
-            cf => cf.ByText("Save As..."));
-
-        Assert.That(saveAs, Is.Not.Null, "Could not find the 'Save As' menu item.");
-
-        saveAs.Click();
+        page.PressSaveAs();
 
         WaitHelper.WaitUntil(() =>
         {
