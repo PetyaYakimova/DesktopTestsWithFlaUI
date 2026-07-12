@@ -46,4 +46,23 @@ public class NotepadPage
 
         saveAs.Click();
     }
+
+    public AutomationElement? SaveWindow()
+    {
+        WaitHelper.WaitUntil(() =>
+        {
+            var saveWindow = _automation
+                .GetDesktop()
+                .FindFirstDescendant(
+                    cf => cf.ByName("Save As"));
+            return saveWindow != null;
+        });
+
+        var saveWindow = _automation
+            .GetDesktop()
+            .FindFirstDescendant(
+                cf => cf.ByName("Save As"));
+
+        return saveWindow;
+    }
 }
