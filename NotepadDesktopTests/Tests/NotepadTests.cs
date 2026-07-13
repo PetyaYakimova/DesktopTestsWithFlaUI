@@ -40,20 +40,6 @@ public class NotepadTests : TestBase
 
         page.PressSaveAs();
 
-        WaitHelper.WaitUntil(() =>
-        {
-            var saveWindow = Automation
-                .GetDesktop()
-                .FindFirstDescendant(
-                    cf => cf.ByName("Save As"));
-            return saveWindow != null;
-        });
-
-        var saveWindow = Automation
-            .GetDesktop()
-            .FindFirstDescendant(
-                cf => cf.ByName("Save As"));
-
-        Assert.That(saveWindow, Is.Not.Null);
+        Assert.That(page.SaveWindow, Is.Not.Null);
     }
 }
