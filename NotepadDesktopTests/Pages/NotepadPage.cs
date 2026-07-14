@@ -2,7 +2,6 @@
 using FlaUI.Core.Definitions;
 using FlaUI.Core.Tools;
 using FlaUI.UIA3;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace NotepadTests.Pages;
 
