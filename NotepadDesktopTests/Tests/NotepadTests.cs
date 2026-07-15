@@ -1,6 +1,4 @@
-﻿using FlaUI.Core.AutomationElements;
-using FlaUI.Core.Tools;
-using NotepadTests.Base;
+﻿using NotepadTests.Base;
 using NotepadTests.Pages;
 
 namespace NotepadTests.Tests;
